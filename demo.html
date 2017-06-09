@@ -6,11 +6,14 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/linq.min.js"></script>
     <script src="js/vue.min.js"></script>
-    <script src="formbuilder.js"></script>
+    <script src="js/sea.js"></script>
     <script>
-        $(function(){
-            window.form = new formbuilder("#main");
-        })
+        seajs.config({
+            base:'./src'
+        });
+        seajs.use('formbuilder',function(formbuilder){
+            window.form=new formbuilder("#main");
+        });
     </script>
     <style>
         .ctitle{
