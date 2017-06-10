@@ -7,6 +7,7 @@ define(function(require,exports,module){
         require('./c_input'),
         require('./c_areaInput'),
         require('./c_label'),
+        require('./c_description'),
         require('./c_checkbox'),
         require('./c_radio')
     ];

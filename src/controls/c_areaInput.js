@@ -8,6 +8,6 @@ define(function (require, exports, module) {
         key:'areaInput',
         view:"<p>{{txt}}：</p><textarea></textarea>",
         model:{txt:'Text'},
-        editor: new txtEditor(["请输入标题:txt"])
+        editor: new txtEditor(["请输入标题:txt:1"])
     });
 })
