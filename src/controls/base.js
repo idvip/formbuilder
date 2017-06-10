@@ -4,9 +4,9 @@
 define(function (require, exports, module) {
     var observable=require('../common/observable');
     var baseControl = function (params) {
-        var control = function () {
+        var control = function (model) {
             var self=this;
-            self.model = this.copyModel(control.params.model);
+            self.model = model||this.copyModel(control.params.model);
             self.editor = control.params.editor;
             self.viewVue = new Vue({
                 template: control.params.view,

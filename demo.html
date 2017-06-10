@@ -8,11 +8,12 @@
     <script src="js/vue.min.js"></script>
     <script src="js/sea.js"></script>
     <script>
+        var myForm=null;
         seajs.config({
             base:'./src'
         });
         seajs.use('formbuilder',function(formbuilder){
-            window.form=new formbuilder("#main");
+            myForm=new formbuilder("#main");
         });
     </script>
     <style>
@@ -62,7 +63,8 @@
 </p>
 <p>
     <br/>
-    <button onclick="$('#outs').html(JSON.stringify(window.form.getData()))" class="btn btn-primary">获取数据</button>
+    <button onclick="$('#outs').html(JSON.stringify(myForm.getData()))" class="btn btn-primary">获取数据</button>
+    <button onclick="myForm.setData(prompt('请粘贴数据'));" class="btn btn-success">回显数据</button>
 </p>
 </body>
 </html>

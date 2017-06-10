@@ -14,6 +14,9 @@ define(function(require,exports,module){
     //工具箱生成组件
     var controls={
         list:list,
+        getByKey:function (key) {
+          return list.single("this.params.key=='"+key+"'");
+        },
         loadToolsBox:function($panel,bud){
             var $tools = $("<div class='controls'><p class='ctitle'>&nbsp;控件库</p></div>").appendTo($panel);
             var onClick=function(){
