@@ -5,18 +5,18 @@ define(function (require, exports, module) {
     var observable=require('../common/observable');
     var baseControl = function (params) {
         var control = function () {
-            this.model = this.copyModel(control.params.model);
-            this.editor = control.params.editor;
-            this.viewVue = new Vue({
+            var self=this;
+            self.model = this.copyModel(control.params.model);
+            self.editor = control.params.editor;
+            self.viewVue = new Vue({
                 template: control.params.view,
-                data: this.model
+                data: self.model
             });
-            this.viewVue.$mount();
-            this.key = control.params.key;
-            this.view = $(this.viewVue.$el).addClass("preview")[0];
-            this.on = observable();
-            var self = this;
-            this.view.addEventListener('click', function (e) {
+            self.viewVue.$mount();
+            self.key = control.params.key;
+            self.view = $(self.viewVue.$el).addClass("preview")[0];
+            self.on = observable();
+            self.view.addEventListener('click', function (e) {
                 self.on.call(self, "click", e);
             })
         }

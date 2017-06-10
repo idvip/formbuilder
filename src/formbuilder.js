@@ -12,7 +12,19 @@ define(function(require,exports,module){
         this.$content.append(ctrl.view);
         var self = this;
         ctrl.on("click",function(){
-            var view = this.editor.render(this.model);
+            var view = null;
+            //渲染多编辑器
+            if(this.editor instanceof Array){
+                view = document.createElement("div");
+                var that=this;
+                this.editor.each(function(){
+                    view.appendChild(this.render(that.model));
+                });
+            }
+            else{
+                //单编辑器
+                view = this.editor.render(this.model);
+            }
             self.$editor.html('');
             self.$editor.append(view);
         })
