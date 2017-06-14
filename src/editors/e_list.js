@@ -16,9 +16,8 @@ define(function (require, exports, module) {
     listEditor.prototype.methods={
         add:function(){
             var obj={};
-            var data=this._data;
-            obj[data._editor.conf.txt]='NewItem';
-            this[data._editor.conf.list].push(obj);
+            obj[this._editor.conf.txt]='NewItem';
+            this[this._editor.conf.list].push(obj);
         }
     }
 
