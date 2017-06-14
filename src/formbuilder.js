@@ -28,5 +28,17 @@ define(function(require,exports,module){
         this.$editor=$('<div class="col-md-3 editor"><p  class="ctitle">&nbsp;属性</p></div>').appendTo($row);
         controls.loadToolsBox($toolBox,this)
     }
+    //渲染表单对象
+    var form = function (datas) {
+
+    }
+
+    //渲染表单
+    builder.render=function(datasOrBuilder){
+        if(datasOrBuilder instanceof builder){
+            datasOrBuilder=datasOrBuilder.getData();
+        }
+        return new form();
+    }
     module.exports=builder;
 })

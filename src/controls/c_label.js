@@ -8,6 +8,7 @@ define(function (require, exports, module) {
         key:'label',
         view:"<label>{{txt}}</label>",
         model:{txt:"label"},
-        editor:new txtEditor(["请输入标签:txt"])
+        editor:new txtEditor(["请输入标签:txt"]),
+        type:baseControl.types.hint
     });
 })

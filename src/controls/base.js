@@ -20,6 +20,7 @@ define(function (require, exports, module) {
                 self.on.call(self, "click", e);
             })
         }
+        params.type=params.type||baseControl.input;
         params.view = "<div class='control'>" + params.view + "</div>";
         var vm = control.preViewVue = new Vue({
             template: params.view,
@@ -35,6 +36,12 @@ define(function (require, exports, module) {
         });
         return control;
     }
+    //控件类型定义
+    baseControl.types={
+        input:'input',//default
+        hint:'hint',
+        group:'group'
+    };
     baseControl.prototype.copyModel = function (model) {
         return $.extend(true, {}, model);
     }
