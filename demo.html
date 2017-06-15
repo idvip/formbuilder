@@ -7,6 +7,7 @@
     <script src="js/linq.min.js"></script>
     <script src="js/vue.min.js"></script>
     <script src="js/sea.js"></script>
+    <script src="js/bootstrap.min.js"></script>
     <script>
         var myForm=null;
         seajs.config({
@@ -50,6 +51,7 @@
         }
     </style>
     <title>Title</title>
+    <script src="js/bootstrap.min.js"></script>
 </head>
 <body>
 <p>
@@ -57,6 +59,12 @@
 </p>
 <div id="main">
 
+</div>
+<div style="text-align: center;">
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary btn-lg" onclick="myForm.outTo('#preview-form');$('#myModal').modal()" >
+        预览
+    </button>
 </div>
 <p id="outs">
 
@@ -66,5 +74,28 @@
     <button onclick="$('#outs').html(JSON.stringify(myForm.getData()))" class="btn btn-primary">获取数据</button>
     <button onclick="myForm.setData(prompt('请粘贴数据'));" class="btn btn-success">回显数据</button>
 </p>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">预览窗口</h4>
+            </div>
+            <div class="modal-body">
+                <div id="preview-form">
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 </body>
 </html>

@@ -17,6 +17,7 @@ define(function (require, exports, module) {
                     {n:'文本',v:'text'},
                     {n:'数字',v:'number'},
                     {n:'电话',v:'tel'},
+                    {n:'密码',v:'password'},
                     {n:'日期',v:'date'},
                     {n:'时间',v:'time'},
                     {n:'时间日期',v:'datetime-local'}
