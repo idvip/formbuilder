@@ -48,9 +48,14 @@ define(function(require,exports,module){
         this.render(ctrl);
     }
     builder.prototype.render=function (ctrl) {
+        var self = this;
         //渲染表单，如果传递控件对象，则append 否则重新渲染所有控件（刷新）
         if(ctrl){
-            this.$content.append(ctrl.view);
+            this.$content.append($(ctrl.view).append($("<div class='remove'>删除</div>").click(function(){
+                console.log(ctrl);
+                self.ctrls.remove(ctrl);
+                self.render();
+            })));
         }
         else{
             this.$content.html('');
@@ -101,13 +106,10 @@ define(function(require,exports,module){
 
     //渲染表单（生成表单）
     builder.render=function(datasOrBuilder,id){
-        var ctrls = null;
         if(datasOrBuilder instanceof builder){
-            ctrls = datasOrBuilder.ctrls;
+            datasOrBuilder = datasOrBuilder.getData();
         }
-        else{
-            ctrls = datasToCtrls(datasOrBuilder);
-        }
+        var ctrls = datasToCtrls(datasOrBuilder);
         var f = new form(ctrls);
         var html = f.outTo(id);
         return id?html:f;

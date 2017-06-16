@@ -1,6 +1,7 @@
 module.exports = function(grunt) {
     var pkg = grunt.file.readJSON('package.json');
     grunt.initConfig({
+        //1:打包js
         pkg: pkg,
         options: {
         },
@@ -36,14 +37,30 @@ module.exports = function(grunt) {
         //清理.build文件夹
         clean: {
             build: ['.build']
+        },
+        //2：打包css
+
+        // Compiles Sass to CSS and generates necessary files if requested
+        sass: {
+            dist: {
+                files: [{
+                    expand: true,
+                    cwd: 'css/',
+                    src: ['*.{scss,sass}'],
+                    dest: 'css/',
+                    ext: '.css'
+                }]
+            }
         }
+
     });
     //  加载三个插件
     grunt.loadNpmTasks('grunt-cmd-transport');
     grunt.loadNpmTasks('grunt-cmd-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-contrib-sass');
     // 定义任务
-    grunt.registerTask('default', ['transport' , 'concat' , 'uglify','clean']);
+    grunt.registerTask('default', ['transport' , 'concat' , 'uglify','clean','sass']);
 
 };
