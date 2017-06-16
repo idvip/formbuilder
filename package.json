@@ -1,4 +1,12 @@
 {
-  "name": "application-name",
-  "version": "0.0.1"
+"name" : "formbuilder",
+"version" : "1.0.0",
+  "pkgs":["js/jquery.min.js","js/bootstrap.min.js","js/vue.min.js","sea.js","linq.min.js"],
+"devDependencies" : {
+"grunt" : "0.4.1",
+"grunt-cmd-transport": "~0.2.0",
+"grunt-cmd-concat": "~0.2.0",
+"grunt-contrib-uglify" : "0.2.0",
+"grunt-contrib-clean" : "0.4.0"
+}
 }
