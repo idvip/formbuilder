@@ -4,25 +4,12 @@
     <meta charset="UTF-8">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/formbuilder.css" rel="stylesheet">
-    <script src="js/jquery.min.js"></script>
-    <script src="js/linq.min.js"></script>
-    <script src="js/vue.min.js"></script>
-    <script src="js/sea.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <title>formbuilderDemo</title>
-    <script>
-        var myForm=null;
-        seajs.config({
-            base:'./src'
-        });
-        seajs.use('formbuilder',function(formbuilder){
-            myForm=new formbuilder("#main");
-        });
-    </script>
+    <script src="dist/formbuilder-1.0.0.js"></script>
+    <title>formbuilderDemo-prod</title>
 </head>
 <body>
 <p>
-    Demo====
+    发布版Demo=======
 </p>
 <div id="main">
 
@@ -62,7 +49,8 @@
         </div>
     </div>
 </div>
-
-
+<script>
+    var myForm=new formbuilder("#main");
+</script>
 </body>
 </html>

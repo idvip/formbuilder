@@ -1,0 +1,39 @@
+.ctitle{
+  margin-top:1rem;
+}
+.controls{
+  border:1px dotted green;
+}
+.control{
+  margin:1rem;
+  padding:1rem;
+  position:relative;
+  &.preview{
+    border:1px solid #ccc;
+    &:before{
+        content:"";
+        color:red;
+        z-index:99;
+        position:absolute;
+        display: block;
+        left:0;
+        top:0;
+        width:100%;
+        height:100%;
+      }
+    .remove{
+      position: absolute;
+      right:5px;
+      top:5px;
+      z-index: 100;
+      color:red;
+      cursor:pointer;
+    }
+  }
+}
+.content{
+  border:1px solid rebeccapurple;
+}
+.editor{
+  border:1px double #ddd;
+}
