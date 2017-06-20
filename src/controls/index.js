@@ -5,7 +5,7 @@ define(function(require,exports,module){
     //导入所有可用组件列表
     var list=[
         require('./c_input'),
-        require('./c_areaInput'),
+        //require('./c_areaInput'),
         require('./c_label'),
         require('./c_description'),
         require('./c_checkbox'),
@@ -13,9 +13,9 @@ define(function(require,exports,module){
     ];
     //工具箱生成组件
     var controls={
-        list:list,
+        list:list.each("a[s.params.key]=s",{}),
         getByKey:function (key) {
-          return list.single("this.params.key=='"+key+"'");
+          return controls.list[key];
         },
         loadToolsBox:function($panel,bud){
             var $tools = $("<div class='controls'><p class='ctitle'>&nbsp;控件库</p></div>").appendTo($panel);
