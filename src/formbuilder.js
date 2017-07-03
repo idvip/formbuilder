@@ -9,7 +9,9 @@ define(function(require,exports,module){
         this.ctrls=[];
     }
     //显示编辑器（点击控件时）
-    var onShowEditor=function(){
+    var onShowEditor=function(clear){
+        this._form.$editor.html('');
+        if(clear===true) return;
         var view = null;
         //渲染多编辑器
         if(this.editor instanceof Array){
@@ -23,8 +25,9 @@ define(function(require,exports,module){
             //单编辑器
             view = this.editor.render(this.model);
         }
-        this._form.$editor.html('');
         this._form.$editor.append(view);
+        //当前正在编辑的控件
+        this._form.currentCtrl=this;
     }
     var datasToCtrls=function(data){
         if(!data){
@@ -41,21 +44,26 @@ define(function(require,exports,module){
         }).where("this");
     }
     builder.prototype.addControl=function(ctrl){
+        var self = this;
         ctrl._form=this;
         ctrl.on("click",onShowEditor);
+        ctrl.on("delete",function(){
+            var isCurr=this._form.currentCtrl==this;
+            self.ctrls.remove(this);
+            //如果当前编辑控件被删除，清除编辑区
+            if(isCurr){
+                onShowEditor.call(this,true);
+            }
+            self.render();
+        })
         ctrl.setIndex(this.ctrls.length);
         this.ctrls.push(ctrl);
         this.render(ctrl);
     }
     builder.prototype.render=function (ctrl) {
-        var self = this;
         //渲染表单，如果传递控件对象，则append 否则重新渲染所有控件（刷新）
         if(ctrl){
-            this.$content.append($(ctrl.view).append($("<div class='remove'>删除</div>").click(function(){
-                console.log(ctrl);
-                self.ctrls.remove(ctrl);
-                self.render();
-            })));
+            this.$content.append(ctrl.view);
         }
         else{
             this.$content.html('');
@@ -80,7 +88,7 @@ define(function(require,exports,module){
     builder.prototype.init=function ($dom) {
         var $row=$('<div class="row">').appendTo($dom.addClass("container-fluid"));
         var $toolBox=$('<div class="col-md-3">').appendTo($row);
-        this.$content=$('<div class="col-md-6 content"><p  class="ctitle">&nbsp;表单编辑区</p></div>').appendTo($row);
+        this.$content=$('<div class="col-md-6 content"><p class="ctitle">&nbsp;表单编辑区</p></div>').appendTo($row);
         this.$editor=$('<div class="col-md-3 editor"><p  class="ctitle">&nbsp;属性</p></div>').appendTo($row);
         controls.loadToolsBox($toolBox,this)
     }
@@ -97,8 +105,7 @@ define(function(require,exports,module){
     form.prototype.outTo=function (id) {
         //如果不传id，则直接返回html，便于保存html表单
         var html =  this.ctrls.select(function () {
-            var view = $(this.view).html();
-            return $("<div class='control'/>").append(view)[0].outerHTML;
+            return this.genHtml();
         }).join('');
         $(id).html(html);
         return html;

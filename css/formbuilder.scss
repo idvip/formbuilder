@@ -30,6 +30,20 @@
       cursor:pointer;
     }
   }
+  .ctrl-toolbar{
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    z-index: 100;
+    .ctrl-toolbar-item{
+      cursor: pointer;
+      color:red;
+      &:hover{
+        color:white;
+        background-color: red;
+      }
+    }
+  }
 }
 .content{
   border:1px solid rebeccapurple;
