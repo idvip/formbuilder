@@ -8,7 +8,7 @@ define(function (require, exports, module) {
     module.exports = baseControl({
         key:'textInput',
         view:"<span>{{txt}}</span>：" +
-        "<input v-if='type!=\"area\"' v-bind:type='type'/>" +
+        "<input v-if='type!=\"area\"' v-bind:type='type' v-bind:name='field_name'/>" +
         "<p v-if='type==\"area\"'><textarea></textarea></p>",
         model:{txt:'Text',type:'text'},
         editor:[

@@ -6,7 +6,7 @@ define(function (require, exports, module) {
     var editor=require('../editors/e_list');
     module.exports = baseControl({
         key:'radioList',
-        view:"<div v-for='p in list'><input type='radio'/>&nbsp;&nbsp;&nbsp;<span>{{p.txt}}</span></div>",
+        view:"<div v-for='p in list'><input type='radio' v-bind:name='field_name'/>&nbsp;&nbsp;&nbsp;<span>{{p.txt}}</span></div>",
         model:{list:[
             {txt:'选项A'},
             {txt:'选项B'}
