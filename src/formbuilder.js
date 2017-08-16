@@ -55,10 +55,27 @@ define(function(require,exports,module){
                 onShowEditor.call(this,true);
             }
             self.render();
-        })
+        });
+        ctrl.on("moveTop",function(){
+            this.moveTo(this._index-1);
+            self.resetIndex();
+            self.render();
+        });
+        ctrl.on("moveDown",function(){
+            this.moveTo(this._index+1);
+            self.resetIndex();
+            self.render();
+        });
         ctrl.setIndex(this.ctrls.length);
         this.ctrls.push(ctrl);
         this.render(ctrl);
+    }
+    //按index顺序 从新给控件编排索引
+    builder.prototype.resetIndex=function () {
+        this.ctrls = this.ctrls.orderBy("_index");
+        this.ctrls.each(function(i){
+            this._index=i;
+        });
     }
     builder.prototype.render=function (ctrl) {
         //渲染表单，如果传递控件对象，则append 否则重新渲染所有控件（刷新）
@@ -88,7 +105,7 @@ define(function(require,exports,module){
     builder.prototype.init=function ($dom) {
         var $row=$('<div class="row">').appendTo($dom.addClass("container-fluid"));
         var $toolBox=$('<div class="col-md-3">').appendTo($row);
-        this.$content=$('<div class="col-md-6 content"><p class="ctitle">&nbsp;表单编辑区</p></div>').appendTo($row);
+        this.$content=$('<div class="col-md-6 content"></div>').appendTo($row);
         this.$editor=$('<div class="col-md-3 editor"><p  class="ctitle">&nbsp;属性</p></div>').appendTo($row);
         controls.loadToolsBox($toolBox,this)
     }

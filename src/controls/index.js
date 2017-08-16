@@ -9,7 +9,8 @@ define(function(require,exports,module){
         require('./c_label'),
         require('./c_description'),
         require('./c_checkbox'),
-        require('./c_radio')
+        require('./c_radio'),
+        require('./c_dropdown')
     ];
     //工具箱生成组件
     var controls={

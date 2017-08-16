@@ -8,6 +8,7 @@ define(function (require, exports, module) {
         key:'description',
         view:"<label>{{txt}}</label><p>{{desc}}</p>",
         model:{txt:"标题",desc:"这里写描述文字"},
-        editor:new txtEditor(["请输入标题:txt","请输入描述:desc:1"])
+        editor:new txtEditor(["请输入标题:txt","请输入描述:desc:1"]),
+        type:baseControl.types.hint
     });
 })

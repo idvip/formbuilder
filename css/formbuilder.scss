@@ -37,8 +37,10 @@
     z-index: 100;
     .ctrl-toolbar-item{
       cursor: pointer;
-      color:red;
-      &:hover{
+      &.del{
+        color:red;
+      }
+      &.del:hover{
         color:white;
         background-color: red;
       }
